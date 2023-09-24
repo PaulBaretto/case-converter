@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Converter</title>
+    <!-- google fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mooli&family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <!-- css  -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <div class="wrapper">
+          <nav></nav>
+          <H1 class="greeting-header">Welcome John</H1>
+          <div class="cc-wrapper">
+            <textarea name="textarea-input" id=""></textarea>
+            <div class="btns-holder">
+                <button class="cc-btn">UPPER CASE</button>
+                <button class="cc-btn">lower case</button>
+                <button class="cc-btn">Copy To Clipboard</button>
+                <button class="cc-btn">Clear</button>
+                <button class="cc-btn add-name-btn">Add Your Name</button>
+            </div>
+          </div>
+
+          <!-- popup  -->
+          <div class="popup-wrapper">
+              <button class="close-popup-btn">X</button>
+              <div class="pop-box">
+                  <form action="">
+                      <input type="text" class="input-name" name="your-name">
+                      <label for="">Your Name</label>
+                    </form>
+                </div>
+                <div class="pop-bg"></div>
+            </div>
+      </div>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

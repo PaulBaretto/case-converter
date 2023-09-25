@@ -1,9 +1,12 @@
 
 
 let body = document.querySelector('body');
+let main_wrapper = document.querySelector('.wrapper');
 let greeting = document.querySelector('.greeting-header');
 let cc_wrapper = document.querySelector('.cc-wrapper');
 let textArea = document.querySelector('#textarea');
+let error_Btns = document.querySelectorAll('.error-btn')
+// let error_Btns = document.querySelector('.error-btn')
 let upperCaseBtn = document.querySelector('.upper-case');
 let lowerCaseBtn = document.querySelector('.lower-case');
 let clipBoard = document.querySelector('.copyToClipBoard');
@@ -16,30 +19,33 @@ let popInput = document.querySelector('input[name="your-name"]');
 let valueNonePopup = document.querySelector('.value-none-pop');
 let valueNonePopup_error_bg = document.querySelector('.pop-up-value-error')
 
+
+// Event listerners 
+
+error_Btns.forEach(error_Btn => {
+    error_Btn.addEventListener('click', value_error_btn_function)
+})
+// add name btn 
 addNameBtn.addEventListener('click', addName)
-
+// clear 
+clearBtn.addEventListener('click', clearTextarea);
+// lower case
+lowerCaseBtn.addEventListener('click', textToLowerCase)
+// upper case
+upperCaseBtn.addEventListener('click', textToUpperCase);
+// copy to board 
+clipBoard.addEventListener('click', copyToClipBoard);
+// popup close btn 
 closePopupBtn.addEventListener('click', shutPopup)
-
+// popup wrapper click outside hide popup function 
 popupWrapper.addEventListener('click', (e) => {
     if(e.target === popupBG){
         popupWrapper.classList.remove('popup-clicked');
         console.log('clicked')
     }
 })
-
+// popup input labal 
 popInput.addEventListener('change', stopLabal)
-
-// clear 
-clearBtn.addEventListener('click', clearTextarea);
-
-// lower case
-lowerCaseBtn.addEventListener('click', textToLowerCase)
-// upper case
-upperCaseBtn.addEventListener('click', textToUpperCase)
-
-clipBoard.addEventListener('click', copyToClipBoard)
-console.log(clipBoard) 
-
 
 
 
@@ -48,6 +54,24 @@ console.log(clipBoard)
 
 
 // *functions* 
+// error btn 
+// if textArea value is null 
+function value_error_btn_function(){
+     if(textArea.value == ''){
+        valueNonePopup.classList.add('value-is-none')
+        valueNonePopup_error_bg.addEventListener('click', (e) => {
+            let error_box = document.querySelector('.value-none-box');
+            if(e.target !== error_box){
+                valueNonePopup.classList.remove('value-is-none');
+            }
+        })
+        
+    } else{
+        // alert('Textarea is NULL')
+        console.log('not null')
+        valueNonePopup.classList.remove('value-is-none')
+    };
+}
 // Add your name ()
 function addName(){
     popupWrapper.classList.add('popup-clicked');
@@ -86,6 +110,8 @@ function textToUpperCase(){
 
 
 // copy 
+
+
 function copyToClipBoard(){
     // document.body.appendChild(textArea);
     textArea.focus();
@@ -97,52 +123,23 @@ function copyToClipBoard(){
         let msg;
         if(successful){
             msg = "successful";
-            cc_wrapper.classList.add('text-copied')
+            main_wrapper.classList.add('text-copied')
+            
         }
         else{
             msg = 'unsuccessful';
-            cc_wrapper.classList.remove('text-copied')
+            main_wrapper.classList.remove('text-copied')
         }
         console.log('Fallback: Copying text command was ' + msg);
     } catch (err) {
         console.error('Fallback: Oops, unable to copy', err);
     }
-    
-    // if textArea value is null 
-    if(textArea.value == ''){
-        console.log('textarea is Null')
-        // alert('Textarea is NULL')
-        valueNonePopup.classList.add('value-is-none')
-        valueNonePopup_error_bg.addEventListener('click', (e) => {
-            let error_box = document.querySelector('.value-none-box');
-            if(e.target !== error_box){
-                valueNonePopup.classList.remove('value-is-none');
-                console.log('click')
-            }
-        })
-        
-    } else{
-        // alert('Textarea is NULL')
-        console.log('not null')
-        valueNonePopup.classList.remove('value-is-none')
-    };
-}
-// error value function 
-function shut_error_popup(){
-    valueNonePopup.classList.remove('value-is-none')
+
+    setTimeout(() => {
+        main_wrapper.classList.remove('text-copied');
+      }, 2900);
+
 }
 
 
 
-// Cookie code start
-
-// function setCookie(cname, cvalue, exdays) {
-//     const d = new Date();
-//     d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-//     let expires = "expires=" + d.toUTCString();
-//     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-// }
-
-// function checkCookie(){
-//    popInput
-// }

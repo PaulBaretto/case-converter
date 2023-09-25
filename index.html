@@ -19,15 +19,16 @@
           <nav></nav>
           <H1 class="greeting-header">Welcome John</H1>
           <div class="cc-wrapper">
-            <!-- <div class="success-msg">
+            <div class="success-msg">
                 <p>Copied Successfully</p>
-            </div> -->
+                <div class="success-text-timer"></div>
+            </div>
             <textarea name="textarea-input" id="textarea"></textarea>
             <div class="btns-holder">
-                <button class="cc-btn upper-case">UPPER CASE</button>
-                <button class="cc-btn lower-case">lower case</button>
-                <button class="cc-btn copyToClipBoard">Copy To Clipboard</button>
-                <button class="cc-btn clearBtn">Clear</button>
+                <button class="cc-btn upper-case error-btn">UPPER CASE</button>
+                <button class="cc-btn lower-case error-btn">lower case</button>
+                <button class="cc-btn copyToClipBoard error-btn">Copy To Clipboard</button>
+                <button class="cc-btn clearBtn error-btn">Clear</button>
                 <button class="cc-btn add-name-btn">Add Your Name</button>
             </div>
           </div>
@@ -49,7 +50,7 @@
             <div class="value-none-pop">
                 <div class="pop-up-value-error"></div>
                 <div class="value-none-box">
-                    <p>It looks like your textarea is still empty</p>
+                    <p>It looks like your textarea is still empty ('  ')</p>
                 </div>
             </div>
       </div>

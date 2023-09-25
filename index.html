@@ -19,12 +19,15 @@
           <nav></nav>
           <H1 class="greeting-header">Welcome John</H1>
           <div class="cc-wrapper">
-            <textarea name="textarea-input" id=""></textarea>
+            <!-- <div class="success-msg">
+                <p>Copied Successfully</p>
+            </div> -->
+            <textarea name="textarea-input" id="textarea"></textarea>
             <div class="btns-holder">
-                <button class="cc-btn">UPPER CASE</button>
-                <button class="cc-btn">lower case</button>
-                <button class="cc-btn">Copy To Clipboard</button>
-                <button class="cc-btn">Clear</button>
+                <button class="cc-btn upper-case">UPPER CASE</button>
+                <button class="cc-btn lower-case">lower case</button>
+                <button class="cc-btn copyToClipBoard">Copy To Clipboard</button>
+                <button class="cc-btn clearBtn">Clear</button>
                 <button class="cc-btn add-name-btn">Add Your Name</button>
             </div>
           </div>
@@ -33,12 +36,21 @@
           <div class="popup-wrapper">
               <button class="close-popup-btn">X</button>
               <div class="pop-box">
-                  <form action="">
+                  <form action="" method="post">
                       <input type="text" class="input-name" name="your-name">
-                      <label for="">Your Name</label>
+                      <label>Your Name</label>
+                      <!-- <input type="submit" value="Update"> -->
                     </form>
                 </div>
                 <div class="pop-bg"></div>
+            </div>
+            
+            <!-- if textarea is empty -->
+            <div class="value-none-pop">
+                <div class="pop-up-value-error"></div>
+                <div class="value-none-box">
+                    <p>It looks like your textarea is still empty</p>
+                </div>
             </div>
       </div>
     </main>

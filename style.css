@@ -25,6 +25,19 @@ nav{
     margin-bottom: 60px;
     color: #fff;
 }
+.success-msg{
+    padding-block: 10px;
+    display: none;
+}
+.text-copied .success-msg{
+    display: block;
+}
+.success-msg p{
+    font-size: 15px;
+    font-family: var(--font-Roboto-Condensed);
+    color: #fff;
+    font-weight: 400;
+}
 .cc-wrapper textarea{
   min-height: 200px;
   width: -webkit-fill-available;
@@ -38,6 +51,9 @@ nav{
   color: #fff;
   font-family: var(--font-Roboto-Condensed);
   font-size: 1rem;
+}
+.copied #textarea::selection{
+    background: transparent;
 }
 .btns-holder{
     display: grid;
@@ -145,16 +161,60 @@ nav{
     top: 13px;
     z-index: 0;
     font-size: 18px;
-    color: #000;
+    color: #0009;
     transition: 0.1s linear;
+    pointer-events: none;
+    background-color: #DFC1C1;
 }
-.input-name:focus + .pop-box label{
-    transform: translateY(-22px);
+.pop-box .input-name:focus ~ label,
+label.input-clicked{
+    transform: translateY(-22px); 
     font-size: 15px;
     z-index: 3;
     font-size: 15px;
 }
+input:-internal-autofill-selected{
+    background-color: transparent !important;
+}
 
+.value-none-pop{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    /* z-index: -1; */
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s linear;
+}
+.value-is-none.value-none-pop{
+    visibility: visible;
+    opacity: 1;
+}
+.pop-up-value-error{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.5;
+}
+.value-none-box{
+    position: relative;
+    z-index: 1;
+    width: 300px;
+    height: 60px;
+    margin-top: 10px;
+    background-color: #fa0505;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-Roboto-Condensed);
+    font-size: 18px;
+}
 
 @media only screen and (max-width:1024px){
     .btns-holder{
@@ -165,4 +225,7 @@ nav{
     .btns-holder{
         grid-template-columns:repeat(2,1fr);
     }
+.greeting-header {
+  font-size: 30px;
+}
 }

@@ -1,101 +1,157 @@
-
-*{
+* {
     margin: 0;
 }
-:root{
-  --body-bg:#907F7F;
-  --textarea-bg:#5C2B2B;
-  --font-mooli:'Mooli', sans-serif;
-  --font-Roboto-Condensed:'Roboto Condensed', sans-serif;
+
+:root {
+    --body-bg: #907F7F;
+    --textarea-bg: #5C2B2B;
+    --font-mooli: 'Mooli', sans-serif;
+    --font-Roboto-Condensed: 'Roboto Condensed', sans-serif;
 }
-body{
+
+body {
     background: #907F7F;
 }
-nav{
+
+nav {
     height: 50px;
 }
-.wrapper{
+
+.wrapper {
     max-width: 1600px;
     margin: auto;
     padding-inline: 30px;
 }
-.greeting-header{
+
+.greeting-header {
     font-family: var(--font-mooli);
     font-size: 40px;
     margin-bottom: 60px;
     color: #fff;
 }
-.success-msg{
+
+.success-msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 40px;
+    background: #5C2B2B;
     padding-block: 10px;
-    display: none;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    transition: 0.2s linear;
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
 }
-.text-copied .success-msg{
-    display: block;
+
+.text-copied .success-msg {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
 }
-.success-msg p{
+
+.success-msg p {
     font-size: 15px;
     font-family: var(--font-Roboto-Condensed);
     color: #fff;
-    font-weight: 400;
+    font-weight: 500;
 }
-.cc-wrapper textarea{
-  min-height: 200px;
-  width: -webkit-fill-available;
-  padding: 18px 18px;
-  resize: none;
-  outline: none;
-  border: none;
-  border-radius: 10px;
-  background-color:var(--textarea-bg);
-  caret-color: #fff;
-  color: #fff;
-  font-family: var(--font-Roboto-Condensed);
-  font-size: 1rem;
+
+.success-text-timer {
+    position: absolute;
+    right: 0;
+    bottom: 0px;
+    width: 100%;
+    height: 6px;
+    background-color: #fff;
+    animation: success-underline 3s linear infinite;
+    animation-play-state: paused;
 }
-.copied #textarea::selection{
+
+.text-copied .success-text-timer {
+    animation-play-state: running;
+}
+
+@keyframes success-underline {
+    0% {
+        width: 100%;
+    }
+
+    50% {
+        width: 50%;
+    }
+
+    100% {
+        width: 0%;
+    }
+}
+
+.cc-wrapper textarea {
+    min-height: 200px;
+    width: -webkit-fill-available;
+    padding: 18px 18px;
+    resize: none;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--textarea-bg);
+    caret-color: #fff;
+    color: #fff;
+    font-family: var(--font-Roboto-Condensed);
+    font-size: 1rem;
+}
+
+.text-copied #textarea::selection {
     background: transparent;
 }
-.btns-holder{
+
+.btns-holder {
     display: grid;
-    grid-template-columns: repeat(7,1fr);
+    grid-template-columns: repeat(7, 1fr);
     margin-top: 20px;
     gap: 10px;
 }
-.cc-btn{
-  outline: none;
-  min-height: 40px;
-  border: none;
-  border-radius: 9px;
-  background-color: #D9D9D9;
-  cursor: pointer;    
-  font-family: var(--font-Roboto-Condensed);
-  color: #000;
-  font-weight: 700;
-  font-size: 18px;
-  transition: 0.1s linear;
-  padding: 10px 0;
-  display: grid;
-  align-items: center;
-  justify-content: center;
+
+.cc-btn {
+    outline: none;
+    min-height: 40px;
+    border: none;
+    border-radius: 9px;
+    background-color: #D9D9D9;
+    cursor: pointer;
+    font-family: var(--font-Roboto-Condensed);
+    color: #000;
+    font-weight: 700;
+    font-size: 18px;
+    transition: 0.1s linear;
+    padding: 10px 0;
+    display: grid;
+    align-items: center;
+    justify-content: center;
 }
-.cc-btn:hover{
+
+.cc-btn:hover {
     background-color: #5C2B2B;
     color: #fff;
 }
 
 /* popup */
-.pop-bg{
+.pop-bg {
     position: absolute;
     width: 100%;
     height: 100%;
     background-color: #000;
     filter: blur(1px);
-    opacity: 0.5; 
+    opacity: 0.5;
     left: 0;
     top: 0;
 
 }
-.popup-wrapper{
+
+.popup-wrapper {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -108,11 +164,13 @@ nav{
     visibility: hidden;
     opacity: 0;
 }
-.popup-wrapper.popup-clicked{
+
+.popup-wrapper.popup-clicked {
     visibility: visible;
     opacity: 1;
 }
-.close-popup-btn{
+
+.close-popup-btn {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -126,7 +184,8 @@ nav{
     outline: none;
     border: none;
 }
-.pop-box{
+
+.pop-box {
     background-color: #DFC1C1;
     width: 500px;
     height: 300px;
@@ -138,7 +197,8 @@ nav{
     position: relative;
     z-index: 1;
 }
-.pop-box .input-name{
+
+.pop-box .input-name {
     width: 300px;
     height: 40px;
     outline: none;
@@ -151,10 +211,12 @@ nav{
     font-size: 18px;
     color: #000;
 }
-.pop-box form{
+
+.pop-box form {
     position: relative;
 }
-.pop-box label{
+
+.pop-box label {
     position: absolute;
     /* display: none; */
     left: 10px;
@@ -166,18 +228,20 @@ nav{
     pointer-events: none;
     background-color: #DFC1C1;
 }
-.pop-box .input-name:focus ~ label,
-label.input-clicked{
-    transform: translateY(-22px); 
+
+.pop-box .input-name:focus~label,
+label.input-clicked {
+    transform: translateY(-22px);
     font-size: 15px;
     z-index: 3;
     font-size: 15px;
 }
-input:-internal-autofill-selected{
+
+input:-internal-autofill-selected {
     background-color: transparent !important;
 }
 
-.value-none-pop{
+.value-none-pop {
     position: absolute;
     top: 0;
     left: 0;
@@ -190,21 +254,25 @@ input:-internal-autofill-selected{
     opacity: 0;
     transition: 0.3s linear;
 }
-.value-is-none.value-none-pop{
+
+.value-is-none.value-none-pop {
     visibility: visible;
     opacity: 1;
 }
-.pop-up-value-error{
+
+.pop-up-value-error {
     position: absolute;
     width: 100%;
     height: 100%;
     background: #000;
     opacity: 0.5;
+    cursor: text;
 }
-.value-none-box{
+
+.value-none-box {
     position: relative;
     z-index: 1;
-    width: 300px;
+    width: 350px;
     height: 60px;
     margin-top: 10px;
     background-color: #fa0505;
@@ -216,16 +284,22 @@ input:-internal-autofill-selected{
     font-size: 18px;
 }
 
-@media only screen and (max-width:1024px){
-    .btns-holder{
-        grid-template-columns:repeat(3,1fr);
+@media only screen and (max-width:1024px) {
+    .btns-holder {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
-@media only screen and (max-width:440px){
-    .btns-holder{
-        grid-template-columns:repeat(2,1fr);
+
+@media only screen and (max-width:440px) {
+    .btns-holder {
+        grid-template-columns: repeat(2, 1fr);
     }
-.greeting-header {
-  font-size: 30px;
-}
+
+    .greeting-header {
+        font-size: 30px;
+    }
+
+    .success-msg {
+        top: 90vh;
+    }
 }

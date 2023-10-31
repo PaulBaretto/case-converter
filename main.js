@@ -9,6 +9,7 @@ let error_Btns = document.querySelectorAll('.error-btn')
 // let error_Btns = document.querySelector('.error-btn')
 let upperCaseBtn = document.querySelector('.upper-case');
 let lowerCaseBtn = document.querySelector('.lower-case');
+let capitalizedCaseBtn = document.querySelector('.capitalized-case');
 let clipBoard = document.querySelector('.copyToClipBoard');
 let clearBtn = document.querySelector('.clearBtn');
 let addNameBtn = document.querySelector('.add-name-btn');
@@ -33,6 +34,8 @@ clearBtn.addEventListener('click', clearTextarea);
 lowerCaseBtn.addEventListener('click', textToLowerCase)
 // upper case
 upperCaseBtn.addEventListener('click', textToUpperCase);
+// Capitalized Case 
+capitalizedCaseBtn.addEventListener('click', textToCapitalizedCase);
 // copy to board 
 clipBoard.addEventListener('click', copyToClipBoard);
 // popup close btn 
@@ -103,9 +106,16 @@ function textToLowerCase(){
 }
 // upper case
 function textToUpperCase(){
-    let Uowercase = textArea.value.toUpperCase();
-    textArea.value = Uowercase;
+    let Uppercase = textArea.value.toUpperCase();
+    textArea.value = Uppercase;
 }
+// Capitalized Case
+function textToCapitalizedCase(){
+    let CapitalizedCase = textArea.value.toLowerCase()
+    textArea.value = CapitalizedCase;
+    textArea.style.cssText = 'text-transform: capitalize;'
+}
+
 
 
 

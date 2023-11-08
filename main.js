@@ -9,17 +9,20 @@ let error_Btns = document.querySelectorAll('.error-btn')
 // let error_Btns = document.querySelector('.error-btn')
 let upperCaseBtn = document.querySelector('.upper-case');
 let lowerCaseBtn = document.querySelector('.lower-case');
+let capitalizedCaseBtn = document.querySelector('.capitalized-case');
 let clipBoard = document.querySelector('.copyToClipBoard');
+let formContainer = document.querySelector('#nameForm');
 let clearBtn = document.querySelector('.clearBtn');
 let addNameBtn = document.querySelector('.add-name-btn');
 let popupWrapper = document.querySelector('.popup-wrapper');
 let closePopupBtn = document.querySelector('.close-popup-btn'); 
 let popupBG = document.querySelector('.pop-bg');
 let popInput = document.querySelector('input[name="your-name"]');
+let popInputSubmit = document.querySelector('input[type="submit"]');
 let valueNonePopup = document.querySelector('.value-none-pop');
 let valueNonePopup_error_bg = document.querySelector('.pop-up-value-error')
 
-
+popInput.focus();
 // Event listerners 
 
 error_Btns.forEach(error_Btn => {
@@ -33,6 +36,8 @@ clearBtn.addEventListener('click', clearTextarea);
 lowerCaseBtn.addEventListener('click', textToLowerCase)
 // upper case
 upperCaseBtn.addEventListener('click', textToUpperCase);
+// Capitalized Case 
+capitalizedCaseBtn.addEventListener('click', textToCapitalizedCase);
 // copy to board 
 clipBoard.addEventListener('click', copyToClipBoard);
 // popup close btn 
@@ -75,12 +80,16 @@ function value_error_btn_function(){
 // Add your name ()
 function addName(){
     popupWrapper.classList.add('popup-clicked');
+    popInput.focus();
 }
 // close popup ()
 function shutPopup(){
     popupWrapper.classList.remove('popup-clicked');
 }
-
+formContainer.addEventListener('submit', (e) => {
+    e.preventDefault();
+    localStorage.setItem('Name', popInput.value)
+})
 // stop labal on top if it contains value 
 function stopLabal(){
     if(popInput.value !== ''){
@@ -103,9 +112,16 @@ function textToLowerCase(){
 }
 // upper case
 function textToUpperCase(){
-    let Uowercase = textArea.value.toUpperCase();
-    textArea.value = Uowercase;
+    let Uppercase = textArea.value.toUpperCase();
+    textArea.value = Uppercase;
 }
+// Capitalized Case
+function textToCapitalizedCase(){
+    let CapitalizedCase = textArea.value.toLowerCase()
+    textArea.value = CapitalizedCase;
+    textArea.style.cssText = 'text-transform: capitalize;'
+}
+
 
 
 
@@ -140,6 +156,8 @@ function copyToClipBoard(){
       }, 2900);
 
 }
+
+
 
 
 

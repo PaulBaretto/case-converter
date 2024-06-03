@@ -4,11 +4,6 @@ let body = document.querySelector('body');
 let main_wrapper = document.querySelector('.wrapper');
 let greeting = document.querySelector('.greeting-header');
 let cc_wrapper = document.querySelector('.cc-wrapper');
-let textArea = document.querySelector('#textarea');
-let error_Btns = document.querySelectorAll('.error-btn')
-// let error_Btns = document.querySelector('.error-btn')
-let upperCaseBtn = document.querySelector('.upper-case');
-let lowerCaseBtn = document.querySelector('.lower-case');
 let clipBoard = document.querySelector('.copyToClipBoard');
 let clearBtn = document.querySelector('.clearBtn');
 let addNameBtn = document.querySelector('.add-name-btn');
@@ -18,6 +13,14 @@ let popupBG = document.querySelector('.pop-bg');
 let popInput = document.querySelector('input[name="your-name"]');
 let valueNonePopup = document.querySelector('.value-none-pop');
 let valueNonePopup_error_bg = document.querySelector('.pop-up-value-error')
+let textArea = document.querySelector('#textarea');
+let error_Btns = document.querySelectorAll('.error-btn')
+// let error_Btns = document.querySelector('.error-btn')
+let upperCaseBtn = document.querySelector('.upper-case');
+let lowerCaseBtn = document.querySelector('.lower-case');
+let sentenceCaseBtn = document.querySelector('.sentence-case');
+let SlugifyCaseBtn = document.querySelector('.slugify-case');
+let remove_hypn = document.querySelectorAll('.remove_hypn-case');
 
 
 // Event listerners 
@@ -29,10 +32,6 @@ error_Btns.forEach(error_Btn => {
 addNameBtn.addEventListener('click', addName)
 // clear 
 clearBtn.addEventListener('click', clearTextarea);
-// lower case
-lowerCaseBtn.addEventListener('click', textToLowerCase)
-// upper case
-upperCaseBtn.addEventListener('click', textToUpperCase);
 // copy to board 
 clipBoard.addEventListener('click', copyToClipBoard);
 // popup close btn 
@@ -46,6 +45,18 @@ popupWrapper.addEventListener('click', (e) => {
 })
 // popup input labal 
 popInput.addEventListener('change', stopLabal)
+// lower case
+lowerCaseBtn.addEventListener('click', textToLowerCase)
+// upper case
+upperCaseBtn.addEventListener('click', textToUpperCase);
+// Sentence case 
+sentenceCaseBtn.addEventListener("click", textToSentenceCase);
+// Slugify case 
+SlugifyCaseBtn.addEventListener("click", textToSlugCase)
+// Remove Hypn
+remove_hypn.forEach((each_hypn_remove_btn) => {
+    each_hypn_remove_btn.addEventListener("click", textRemoveHypn)
+})
 
 
 
@@ -103,15 +114,26 @@ function textToLowerCase(){
 }
 // upper case
 function textToUpperCase(){
-    let Uowercase = textArea.value.toUpperCase();
-    textArea.value = Uowercase;
+    let Uppercase = textArea.value.toUpperCase();
+    textArea.value = Uppercase;
 }
-
-
-
+// Sentence case
+function textToSentenceCase(){
+    textArea.value = textArea.value[0].toUpperCase() + textArea.value.slice(1).toLowerCase();
+}
+// Slugify case 
+function textToSlugCase(){
+    let textarea_val = textArea.value.toLowerCase().split(" ");
+    
+    textArea.value = textarea_val.join("-");
+    // console.log(textarea_val.replace("-", ""));
+}
+// remove hypn 
+function textRemoveHypn(){
+    let removeHypn = textArea.value.replace(/-/g, " ");
+    textArea.value = removeHypn;
+}
 // copy 
-
-
 function copyToClipBoard(){
     // document.body.appendChild(textArea);
     textArea.focus();
@@ -142,4 +164,27 @@ function copyToClipBoard(){
 }
 
 
+
+
+
+// Sentence Case for section inputs 
+// let section_titles = document.querySelectorAll(".to_sentence_case");
+// section_titles.forEach(section_title => {
+//     section_title.addEventListener("keyup", (e) => {
+//     e.target.value =  toSentenceCase(e.target.value)
+    
+//         // console.log(e.target.value);
+//     })
+// })
+// function toSentenceCase(str){
+//     if(!str) return(str);
+//     return str[0].toUpperCase() + str.slice(1);
+// }
+
+// let x = document.querySelector(".sentence-case")
+
+// x.addEventListener("click", () => {
+//     let y = textArea.value;
+//     console.log(y[0].toUpperCase() + y.slice(1).toLowerCase());
+// })
 

@@ -4,6 +4,7 @@ let body = document.querySelector('body');
 let main_wrapper = document.querySelector('.wrapper');
 let greeting = document.querySelector('.greeting-header');
 let cc_wrapper = document.querySelector('.cc-wrapper');
+let pasteText = document.querySelector('.paste');
 let clipBoard = document.querySelector('.copyToClipBoard');
 let clearBtn = document.querySelector('.clearBtn');
 let addNameBtn = document.querySelector('.add-name-btn');
@@ -21,6 +22,7 @@ let lowerCaseBtn = document.querySelector('.lower-case');
 let sentenceCaseBtn = document.querySelector('.sentence-case');
 let SlugifyCaseBtn = document.querySelector('.slugify-case');
 let remove_hypn = document.querySelectorAll('.remove_hypn-case');
+let capitalizedCaseBtn = document.querySelector('.capitalized-case');
 
 
 // Event listerners 
@@ -31,6 +33,8 @@ error_Btns.forEach(error_Btn => {
 // add name btn 
 addNameBtn.addEventListener('click', addName)
 // clear 
+//paste text
+pasteText.addEventListener("click", textPaste)
 clearBtn.addEventListener('click', clearTextarea);
 // copy to board 
 clipBoard.addEventListener('click', copyToClipBoard);
@@ -45,6 +49,10 @@ popupWrapper.addEventListener('click', (e) => {
 })
 // popup input labal 
 popInput.addEventListener('change', stopLabal)
+// Remove Hypn
+remove_hypn.forEach((each_hypn_remove_btn) => {
+    each_hypn_remove_btn.addEventListener("click", textRemoveHypn)
+})
 // lower case
 lowerCaseBtn.addEventListener('click', textToLowerCase)
 // upper case
@@ -53,10 +61,8 @@ upperCaseBtn.addEventListener('click', textToUpperCase);
 sentenceCaseBtn.addEventListener("click", textToSentenceCase);
 // Slugify case 
 SlugifyCaseBtn.addEventListener("click", textToSlugCase)
-// Remove Hypn
-remove_hypn.forEach((each_hypn_remove_btn) => {
-    each_hypn_remove_btn.addEventListener("click", textRemoveHypn)
-})
+// Capitalized case 
+capitalizedCaseBtn.addEventListener("click", textToCapitalizedCase)
 
 
 
@@ -101,7 +107,66 @@ function stopLabal(){
         popInput.nextElementSibling.classList.remove('input-clicked')
     }
 }
+// copy 
+function copyToClipBoard(){
+    // document.body.apgitpendChild(textArea);
+    if(textArea.value === ""){
+        // console.log("Textarea is empty ('')");
+    }else{
+        textArea.focus();
+        textArea.select();
+    
+        try {
+            let successful = document.execCommand('copy');
+            // var msg = successful ? 'successful' : 'unsuccessful';
+            let msg;
+            if(successful){
+                msg = "successful";
+                main_wrapper.classList.add('text-copied')
+                
+            }
+            else{
+                msg = 'unsuccessful';
+                main_wrapper.classList.remove('text-copied')
+            }
+            console.log('Fallback: Copying text command was ' + msg);
+        } catch (err) {
+            console.error('Fallback: Oops, unable to copy', err);
+        }
+    
+        setTimeout(() => {
+            main_wrapper.classList.remove('text-copied');
+          }, 2900);
+    }
 
+}
+// paste text 
+async function textPaste(e){
+
+    try {
+        // Read text from the clipboard
+        const clipText = await navigator.clipboard.readText();
+        
+        // Insert the clipboard text into the textarea
+        textArea.value = clipText;
+    } catch (err) {
+        console.error('Failed to read clipboard contents: ', err);
+    }
+
+    // let paste_text = (e.clipboardData || window.clipboardData).getData('text');
+    
+    // textArea.value = paste_text;
+    // e.preventDefault();
+    
+    // let paste_text = (e.clipboardData || window.clipboardDate).getDate("text")
+    // let paste_text = (e.clipboardData || window.clipboardData).getData('text');
+    
+    // textArea.value = paste_text;
+    // e.preventDefault();
+
+
+    // navigator.clipboard.readText().then((clipText) => (textArea.value = clipText));
+}
 // clear textarea 
 function clearTextarea(){
     textArea.value = "";
@@ -123,45 +188,41 @@ function textToSentenceCase(){
 }
 // Slugify case 
 function textToSlugCase(){
+    // function replaceStuff(str) {
+    //     const replacements = {
+    //         ";": "",
+    //         // ".": "",
+    //         ",": ""
+    //         // Add more replacements as needed
+    //     };
+    //     return str.replace(new RegExp(Object.keys(replacements).join("|"), "g"), function(matched) {
+    //         return replacements[matched];
+    //     });
+    // }
+    // console.log(replaceStuff);
     let textarea_val = textArea.value.toLowerCase().trim().split(" ");
-    
     textArea.value = textarea_val.join("-");
-    // console.log(textarea_val.replace("-", ""));
 }
+// Capitalized Case
+function textToCapitalizedCase(){
+    let textarea_val = textArea.value.trim().split(" ");
+    console.log(textarea_val);
+    let to_capital_lower_case = textarea_val.map(val => val[0].toUpperCase() + val.slice(1).toLowerCase());
+    const result = to_capital_lower_case.join(' ');
+    textArea.value = result;
+    // textarea_val.forEach((each_textArea_val) => {
+    //     // textArea.value = each_textArea_val[0].toUpperCase() + each_textArea_val.slice(1).toLowerCase();
+    //     // textarea_val.value = each_textArea_val[0].toUpperCase() + each_textArea_val.slice(1).toLowerCase();
+    //     console.log(each_textArea_val[0].toUpperCase() + each_textArea_val.slice(1).toLowerCase());
+    // })
+}
+
 // remove hypn 
 function textRemoveHypn(){
     let removeHypn = textArea.value.replace(/-/g, " ");
     textArea.value = removeHypn;
 }
-// copy 
-function copyToClipBoard(){
-    // document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
 
-    try {
-        let successful = document.execCommand('copy');
-        // var msg = successful ? 'successful' : 'unsuccessful';
-        let msg;
-        if(successful){
-            msg = "successful";
-            main_wrapper.classList.add('text-copied')
-            
-        }
-        else{
-            msg = 'unsuccessful';
-            main_wrapper.classList.remove('text-copied')
-        }
-        console.log('Fallback: Copying text command was ' + msg);
-    } catch (err) {
-        console.error('Fallback: Oops, unable to copy', err);
-    }
-
-    setTimeout(() => {
-        main_wrapper.classList.remove('text-copied');
-      }, 2900);
-
-}
 
 
 

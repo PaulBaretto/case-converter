@@ -123,7 +123,7 @@ function textToSentenceCase(){
 }
 // Slugify case 
 function textToSlugCase(){
-    let textarea_val = textArea.value.toLowerCase().split(" ");
+    let textarea_val = textArea.value.toLowerCase().trim().split(" ");
     
     textArea.value = textarea_val.join("-");
     // console.log(textarea_val.replace("-", ""));
@@ -167,24 +167,4 @@ function copyToClipBoard(){
 
 
 
-// Sentence Case for section inputs 
-// let section_titles = document.querySelectorAll(".to_sentence_case");
-// section_titles.forEach(section_title => {
-//     section_title.addEventListener("keyup", (e) => {
-//     e.target.value =  toSentenceCase(e.target.value)
-    
-//         // console.log(e.target.value);
-//     })
-// })
-// function toSentenceCase(str){
-//     if(!str) return(str);
-//     return str[0].toUpperCase() + str.slice(1);
-// }
-
-// let x = document.querySelector(".sentence-case")
-
-// x.addEventListener("click", () => {
-//     let y = textArea.value;
-//     console.log(y[0].toUpperCase() + y.slice(1).toLowerCase());
-// })
 

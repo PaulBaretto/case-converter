@@ -22,14 +22,17 @@ nav {
     margin: auto;
     padding-inline: 30px;
 }
-
+.greeting_holder{
+    position: relative;
+}
 .greeting-header {
     font-family: var(--font-mooli);
     font-size: 40px;
     margin-bottom: 60px;
     color: #fff;
+    opacity: 0;
+    transition: 0.2s linear;
 }
-
 .success-msg {
     display: flex;
     justify-content: center;
@@ -217,6 +220,10 @@ nav {
 .pop-box form {
     position: relative;
 }
+.pop_form_wrap{
+    display: grid;
+    row-gap: 15px;
+}
 
 .pop-box label {
     position: absolute;
@@ -286,7 +293,32 @@ input:-internal-autofill-selected {
     font-size: 18px;
     border-radius: 5px;
 }
-
+.input_button{
+    display: flex;
+    justify-content: center;
+}
+.input_button input{
+    outline: none;
+    min-height: 40px;
+    border: none;
+    border-radius: 9px;
+    background-color: #D9D9D9;
+    cursor: pointer;
+    font-family: var(--font-Roboto-Condensed);
+    color: #000;
+    font-weight: 700;
+    font-size: 18px;
+    transition: 0.1s linear;
+    padding: 10px 0;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+}
+.input_button input:hover{
+    background-color: #5C2B2B;
+    color: #fff;
+}
 @media only screen and (max-width:1024px) {
     .btns-holder {
         grid-template-columns: repeat(3, 1fr);

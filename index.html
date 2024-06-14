@@ -17,13 +17,15 @@
     <main>
         <div class="wrapper">
           <nav></nav>
-          <H1 class="greeting-header">Welcome ""</H1>
+          <div class="greeting_holder">
+              <H1 class="greeting-header">Test name</H1>
+          </div>
           <div class="cc-wrapper">
             <div class="success-msg">
                 <p>Copied Successfully</p>
                 <div class="success-text-timer"></div>
             </div>
-            <textarea name="textarea-input" id="textarea" autofocus ></textarea>
+            <textarea name="textarea-input" id="textarea" ></textarea>
             <div class="btns-holder">
                 <button class="cc-btn sentence-case error-btn remove_hypn-case">Sentence case</button>
                 <button class="cc-btn capitalized-case error-btn remove_hypn-case">Capitalized case</button>
@@ -38,13 +40,20 @@
           </div>
 
           <!-- popup  -->
-          <div class="popup-wrapper">
+          <div class="popup-wrapper popup-clicked">
               <button class="close-popup-btn">X</button>
               <div class="pop-box">
                   <form action="" method="post">
-                      <input type="text" class="input-name" name="your-name" autocomplete="off">
-                      <label>Your Name</label>
-                      <!-- <input type="submit" value="Update"> -->
+                    <div class="pop_form_wrap">
+                        <div class="input-wrap">
+                            <input type="text" class="input-name user_name_input" name="your-name" autofocus autocomplete="off">
+                            <label>Your Name</label>
+                        </div>
+                        <div class="input-wrap input_button">
+                            <input class="pop_submit_btn" type="submit" value="Submit">
+                        </div>
+                    </div>
+
                     </form>
                 </div>
                 <div class="pop-bg"></div>

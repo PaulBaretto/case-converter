@@ -2,7 +2,7 @@
 
 let body = document.querySelector('body');
 let main_wrapper = document.querySelector('.wrapper');
-let greeting = document.querySelector('.greeting-header');
+let welcome_greeting = document.querySelector('.greeting-header');
 let cc_wrapper = document.querySelector('.cc-wrapper');
 let pasteText = document.querySelector('.paste');
 let clipBoard = document.querySelector('.copyToClipBoard');
@@ -40,13 +40,13 @@ clearBtn.addEventListener('click', clearTextarea);
 clipBoard.addEventListener('click', copyToClipBoard);
 // popup close btn 
 closePopupBtn.addEventListener('click', shutPopup)
-// popup wrapper click outside hide popup function 
-popupWrapper.addEventListener('click', (e) => {
-    if(e.target === popupBG){
-        popupWrapper.classList.remove('popup-clicked');
-        console.log('clicked')
-    }
-})
+// popup wrapper click outside hide popup function (is OFF now)
+// popupWrapper.addEventListener('click', (e) => {
+//     if(e.target === popupBG){
+//         popupWrapper.classList.remove('popup-clicked');
+//         console.log('clicked')
+//     }
+// })
 // popup input labal 
 popInput.addEventListener('change', stopLabal)
 // Remove Hypn
@@ -101,7 +101,6 @@ function shutPopup(){
 // stop labal on top if it contains value 
 function stopLabal(){
     if(popInput.value !== ''){
-        console.log('clink')
         popInput.nextElementSibling.classList.add('input-clicked')
     } else{
         popInput.nextElementSibling.classList.remove('input-clicked')
@@ -223,9 +222,79 @@ function textRemoveHypn(){
     textArea.value = removeHypn;
 }
 
+// localStorage.clear();
+
+const userArry = [
+    // obj = {
+    //     TheName:"Paul Barretto"
+    // }
+]
+// localStorage.clear()
+// console.clear()
+let retrivedData;
+function local_storage(){
+    let toJson = JSON.stringify(userArry);
+    localStorage.setItem("userData", toJson)
+    retrivedData = JSON.parse(localStorage.getItem("userData"))
+    // console.log(retrivedData);
+    // console.log(retrivedData[0].FullName);
+    // console.log(retrivedData[0].firstName);
+    // return retrivedData[0].FullName;
+}
+
+// local_storage()
+
+let pop_submit_btn = document.querySelector(".pop_submit_btn");
+let userInput = document.querySelector(".user_name_input");
+let x = userInput.value;
+let full_name;
+let only_name;
+pop_submit_btn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    let userInput_sliced_value;
+    
+    if(userInput.value === "" ){
+        userInput.style.cssText = "border-color:red;";
+        e.preventDefault();
+        userInput.nextElementSibling.style.cssText = "color:red;";
+    }else{
+        userInput.style.cssText = "border-color:inherit;";
+        userInput.nextElementSibling.style.cssText = "color:inherit;";
+            userInput_sliced_value = userInput.value.split(" ").slice(0,1);
+            welcome_greeting.innerHTML =  `Hello, ${userInput_sliced_value}`;
+            
+            setTimeout(() => {
+                popupWrapper.classList.remove('popup-clicked');
+                userInput.value = ""
+                textArea.focus();
+            },500);
+            setTimeout(() => {
+                welcome_greeting.style.cssText = "opacity:1;"
+            }, 1000);
+            // console.log(welcome_greeting.innerHTML);
+    }
+
+    UserFullName = userInput.value;
+    UserFirstName = `${userInput_sliced_value}`;
+    let form_vals = {
+        firstName : UserFirstName,
+        FullName : UserFullName
+    }
+
+    userArry.push(form_vals)
+
+    updatedValues();
+    local_storage();
+})
+function updatedValues(){
+    // return userArry;
+}
 
 
 
 
+
+// Getting data and storeing it in local Storage, finding a way to use the retrived data 
 
 

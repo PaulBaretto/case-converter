@@ -222,26 +222,66 @@ function textRemoveHypn(){
     textArea.value = removeHypn;
 }
 
-// localStorage.clear();
 
-const userArry = [
-    // obj = {
-    //     TheName:"Paul Barretto"
-    // }
-]
-// localStorage.clear()
-// console.clear()
-let retrivedData;
-function local_storage(){
-    let toJson = JSON.stringify(userArry);
+let greeting_variants = [
+    "Hello,",
+    "Hi,",
+    "Welcome back,",
+    "Good day,",
+    "Greetings,",
+    "Hey there,",
+    "Howdy,",
+    "Hiya,",
+    "Salutations,",
+    "What's up,",
+    "Good to see you,",
+    "Nice to meet you,",
+    "How's it going,",
+    "Hello again,"
+];
+
+let user_name = document.querySelector('.user_name');
+let greeting_text = welcome_greeting.querySelector(".greeting_header_text")
+
+
+function local_storage(fd){
+    let toJson = JSON.stringify(fd);
     localStorage.setItem("userData", toJson)
     retrivedData = JSON.parse(localStorage.getItem("userData"))
-    // console.log(retrivedData);
-    // console.log(retrivedData[0].FullName);
-    // console.log(retrivedData[0].firstName);
-    // return retrivedData[0].FullName;
+    // console.log(retrivedData.testName);
+    let user_name = welcome_greeting.querySelector(".user_name");
+    user_name.innerHTML =  retrivedData.firstName;
+}
+// localStorage.clear()
+function updatedValues(){
+    const localData = localStorage.getItem('userData');
+    const localJson = JSON.parse(localData)
+    if(localData !== '' && localData !== null && localData !== undefined){
+        // console.log(localJson)
+        const {firstName} = localJson;
+        user_name.innerHTML = firstName;
+        user_name.style.cssText = "opacity:1;";
+        if(firstName !== null){
+            popupWrapper.classList.remove('popup-clicked');
+            window.addEventListener("load", () => {
+                let gt_length = greeting_variants.length;
+                // let x = getRandom(gt_length + 1);
+                greeting_text.innerHTML = greeting_variants[getRandom(greeting_variants.length)];
+            })
+        }else{
+            //    console.log("fle");
+        }
+        // localJson['age'] = "15";
+    }
 }
 
+function getRandom(max){
+   return Math.floor(Math.random() * max)
+}
+
+
+
+updatedValues();
 // local_storage()
 
 let pop_submit_btn = document.querySelector(".pop_submit_btn");
@@ -249,6 +289,7 @@ let userInput = document.querySelector(".user_name_input");
 let x = userInput.value;
 let full_name;
 let only_name;
+
 pop_submit_btn.addEventListener("click", (e) => {
     e.preventDefault();
 
@@ -262,7 +303,9 @@ pop_submit_btn.addEventListener("click", (e) => {
         userInput.style.cssText = "border-color:inherit;";
         userInput.nextElementSibling.style.cssText = "color:inherit;";
             userInput_sliced_value = userInput.value.split(" ").slice(0,1);
-            welcome_greeting.innerHTML =  `Hello, ${userInput_sliced_value}`;
+            greeting_text.innerHTML = greeting_variants[0];
+            
+            // welcome_greeting.innerHTML =  `Hello, ${userInput_sliced_value}`;
             
             setTimeout(() => {
                 popupWrapper.classList.remove('popup-clicked');
@@ -270,31 +313,84 @@ pop_submit_btn.addEventListener("click", (e) => {
                 textArea.focus();
             },500);
             setTimeout(() => {
-                welcome_greeting.style.cssText = "opacity:1;"
+                user_name.style.cssText = "opacity:1;"
             }, 1000);
-            // console.log(welcome_greeting.innerHTML);
+            UserFullName = userInput.value;
+            UserFirstName = `${userInput_sliced_value}`;
+            local_obj = {
+                firstName : UserFirstName,
+                FullName : UserFullName
+            }
+        
+        
+            // updatedValues();
+            local_storage(local_obj);
     }
 
-    UserFullName = userInput.value;
-    UserFirstName = `${userInput_sliced_value}`;
-    let form_vals = {
-        firstName : UserFirstName,
-        FullName : UserFullName
-    }
-
-    userArry.push(form_vals)
-
-    updatedValues();
-    local_storage();
 })
-function updatedValues(){
-    // return userArry;
-}
+// function updatedValues(){
+//     // return userArry;
+// }
+
+
+// TEST localStorage
+// function local_storage_test(test){
+//     let toJson = JSON.stringify(test);
+//     localStorage.setItem("ṭest", toJson)
+//     retrivedData = JSON.parse(localStorage.getItem("userData"))
+//     // console.log(retrivedData.testName);
+// }
+
+// function test(){
+//     let testObj = {
+//         testName : "Jack",
+//         testAge : 30
+//     }
+//     local_storage_test(testObj)
+// }
+// test();
+
+
+
+// push data in Object
+// const person = [
+//     {
+//     "emplhis":{
+//         "It":{
+//             "name":"bhaskar"
+//         },
+//     }
+// }
+// ]
+
+// const sales={
+//     "id":'1233';
+// }
+
+// person[0]['emplhis']['sales'] = {
+//     "age":"45",
+// }
+
+// console.log(person)
+
+// const person = [
+//     {
+//     "emplhis":{
+//         "It":{
 
 
 
 
 
-// Getting data and storeing it in local Storage, finding a way to use the retrived data 
+//         },
+//     }
+// }
+// ]
+
+// const sales={
+//     "id":'1233';
+// }
+
+
 
 

@@ -7,7 +7,7 @@ let cc_wrapper = document.querySelector('.cc-wrapper');
 let pasteText = document.querySelector('.paste');
 let clipBoard = document.querySelector('.copyToClipBoard');
 let clearBtn = document.querySelector('.clearBtn');
-let addNameBtn = document.querySelector('.add-name-btn');
+// let addNameBtn = document.querySelector('.add-name-btn');
 let popupWrapper = document.querySelector('.popup-wrapper');
 let closePopupBtn = document.querySelector('.close-popup-btn'); 
 let popupBG = document.querySelector('.pop-bg');
@@ -31,7 +31,7 @@ error_Btns.forEach(error_Btn => {
     error_Btn.addEventListener('click', value_error_btn_function)
 })
 // add name btn 
-addNameBtn.addEventListener('click', addName)
+// addNameBtn.addEventListener('click', addName)
 // clear 
 //paste text
 pasteText.addEventListener("click", textPaste)
@@ -90,9 +90,10 @@ function value_error_btn_function(){
     };
 }
 // Add your name ()
-function addName(){
-    popupWrapper.classList.add('popup-clicked');
-}
+// This funtion is turned OFF 
+// function addName(){
+//     popupWrapper.classList.add('popup-clicked');
+// }
 // close popup ()
 function shutPopup(){
     popupWrapper.classList.remove('popup-clicked');
@@ -205,7 +206,7 @@ function textToSlugCase(){
 // Capitalized Case
 function textToCapitalizedCase(){
     let textarea_val = textArea.value.trim().split(" ");
-    console.log(textarea_val);
+    // console.log(textarea_val);
     let to_capital_lower_case = textarea_val.map(val => val[0].toUpperCase() + val.slice(1).toLowerCase());
     const result = to_capital_lower_case.join(' ');
     textArea.value = result;
@@ -265,11 +266,12 @@ function updatedValues(){
             popupWrapper.classList.remove('popup-clicked');
             window.addEventListener("load", () => {
                 let gt_length = greeting_variants.length;
-                // let x = getRandom(gt_length + 1);
                 greeting_text.innerHTML = greeting_variants[getRandom(greeting_variants.length)];
+                greeting_text.style.cssText = 'opacity: 1;';
+                welcome_greeting.style.cssText = 'height: 40px;';
             })
         }else{
-            //    console.log("fle");
+        //    console.log("fls ");
         }
         // localJson['age'] = "15";
     }
@@ -314,6 +316,8 @@ pop_submit_btn.addEventListener("click", (e) => {
             },500);
             setTimeout(() => {
                 user_name.style.cssText = "opacity:1;"
+                greeting_text.style.cssText = 'opacity: 1;';
+                welcome_greeting.style.cssText = 'height: 40px;';
             }, 1000);
             UserFullName = userInput.value;
             UserFirstName = `${userInput_sliced_value}`;
@@ -328,6 +332,25 @@ pop_submit_btn.addEventListener("click", (e) => {
     }
 
 })
+
+if(document.querySelector(".user_name").innerHTML == ""){
+    document.querySelector(".user_name_input").focus();
+    window.addEventListener("load", () => {
+    setTimeout(() => {
+        popupWrapper.classList.add('popup-clicked');
+    }, 500);
+    })
+}else{
+    // console.log("not empty");
+}
+
+
+// clear console every 2s 
+setInterval(() => {
+    console.clear();
+}, 500);
+
+
 // function updatedValues(){
 //     // return userArry;
 // }

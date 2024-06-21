@@ -31,14 +31,15 @@ nav {
     margin-bottom: 60px;
     color: #fff;
     /* opacity: 0; */
+    height: 0;
     transition: 0.2s linear;
 }
 .user_name{
     opacity: 0;
-    transition: 0.1s linear;
+    transition: 0.2s linear;
 }
 .greeting_header_text{
-    /* opacity: 0; */
+    opacity: 0;
     transition: 0.1s linear;
 }
 .success-msg {
@@ -327,6 +328,18 @@ input:-internal-autofill-selected {
     background-color: #5C2B2B;
     color: #fff;
 }
+.drop_line_wrap{
+    display: grid;
+    justify-content: end;
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+}
+.drop_line_wrap a{
+    font-size:18px;
+    font-family: var(--font-mooli);
+    color: #fff;
+}
 @media only screen and (max-width:1024px) {
     .btns-holder {
         grid-template-columns: repeat(3, 1fr);
@@ -343,6 +356,9 @@ input:-internal-autofill-selected {
     }
 
     .success-msg {
-        top: 90vh;
+        top: 0;
+    }
+    .drop_line_wrap{
+        bottom: 20px;
     }
 }
